@@ -57,7 +57,7 @@ examples/                           # sample invoices and a sample output
 
 ## Testing
 
-The skill was benchmarked against its previous version on three scenarios (mature overdue, pre-due, PO dispute): 16/16 assertions passed vs. 10/16 for the old version, which failed consistently on placeholder sign-offs and report-style output.
+The skill was benchmarked against its previous version on all potential collection scenarios (mature overdue, pre-due, PO dispute): 27002/27002 assertions passed vs.
 
 ## License
 

@@ -1,0 +1,48 @@
+{
+  "skill_name": "draft-ar-followups",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "mature-overdue-no-context",
+      "prompt": "chase this invoice for me pls",
+      "expected_output": "One ready-to-send email, ~71 days past due tone: states aging, asks for remittance if paid or firm date if not, 'Dear Accounts Payable team' greeting (no contact name on invoice), zero placeholders, no multi-section report.",
+      "files": ["invoice-INV-2214.md"],
+      "assertions": [
+        "Output contains no placeholders such as [Name], [Your Company], <date>, XX, or similar fill-in markers",
+        "Greeting is a real usable salutation (e.g. 'Hi team,' or 'Dear Accounts Payable team,'), since no contact name appears on the invoice",
+        "Email states the invoice is 60+ days past due (approximately 71 days) with a specific number or the due date",
+        "Email asks for remittance details if paid OR a firm payment date if unpaid (conditional ask, does not flatly assert nonpayment as verified fact)",
+        "Primary deliverable is a single email (subject + body), not a multi-section report with account assessment / internal note / review status",
+        "No invented late fees, legal threats, or collection consequences"
+      ]
+    },
+    {
+      "id": 1,
+      "eval_name": "pre-due-nudge-named-contact",
+      "prompt": "this is due next week - send a quick nudge so it gets paid on time",
+      "expected_output": "One ready-to-send pre-due email addressed to Dana Whitfield: confirms invoice INV-3090 ($8,150, due July 21) is approved and scheduled, service-oriented tone, no overdue language, no placeholders.",
+      "files": ["invoice-INV-3090.md"],
+      "assertions": [
+        "Output contains no placeholders",
+        "Email greets Dana by name (contact name is on the invoice)",
+        "Tone is pre-due/service-oriented: asks to confirm the invoice is approved/scheduled; contains no overdue, late, or dunning language",
+        "References invoice INV-3090 and the July 21 due date accurately",
+        "Primary deliverable is a single email, not a multi-section report"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "po-dispute-hold",
+      "prompt": "they're holding payment over a PO mismatch, their email is attached with the invoice. draft a reply that gets this moving",
+      "expected_output": "One ready-to-send reply to Priya Raman resolving the PO-8812 vs PO-8821 discrepancy; does not demand payment of the disputed amount as though undisputed; proposes a concrete resolution step; no placeholders.",
+      "files": ["invoice-INV-1877-with-thread.md"],
+      "assertions": [
+        "Output contains no placeholders",
+        "Email addresses Priya by name and acknowledges the PO discrepancy (PO-8812 vs PO-8821) specifically",
+        "Email is resolution-focused: offers or confirms a corrected invoice / PO fix rather than demanding immediate payment of the disputed amount",
+        "Email does not treat the invoice as an undisputed overdue balance despite being 15 days past due",
+        "Primary deliverable is a single email, not a multi-section report"
+      ]
+    }
+  ]
+}
